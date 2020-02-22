@@ -20,4 +20,8 @@
     <ProjectReference Include="..\RazorPagesTutorial.Services\RazorPagesTutorial.Services.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\images\" />
+  </ItemGroup>
+
 </Project>
