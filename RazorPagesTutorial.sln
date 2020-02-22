@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RazorPagesTutorial", "Razor
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RazorPagesTutorial.Models", "RazorPagesTutorial.Models\RazorPagesTutorial.Models.csproj", "{9E1F7A12-E270-4325-ACF0-5536FE0C2056}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RazorPagesTutorial.Services", "RazorPagesTutorial.Services\RazorPagesTutorial.Services.csproj", "{E4287618-71FD-412A-A91A-CA917EAD4FB1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{9E1F7A12-E270-4325-ACF0-5536FE0C2056}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9E1F7A12-E270-4325-ACF0-5536FE0C2056}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9E1F7A12-E270-4325-ACF0-5536FE0C2056}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4287618-71FD-412A-A91A-CA917EAD4FB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4287618-71FD-412A-A91A-CA917EAD4FB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4287618-71FD-412A-A91A-CA917EAD4FB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4287618-71FD-412A-A91A-CA917EAD4FB1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
