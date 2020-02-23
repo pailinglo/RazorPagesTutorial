@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -26,6 +27,15 @@ namespace RazorPagesTutorial
         {
             services.AddRazorPages();
             services.AddSingleton<IEmployeeRepository, MockEmployeeRepository>();
+
+            services.Configure<RouteOptions>(options =>
+            {
+                //let generated url or query string to be lower case.
+                options.LowercaseUrls = true;
+                options.LowercaseQueryStrings = true;
+                options.AppendTrailingSlash = true;
+
+            });
 
         }
 

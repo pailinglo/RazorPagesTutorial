@@ -1,5 +1,4 @@
-﻿@page "/EmployeeList"
-@*@page "{name}"*@
+﻿@page
 @model RazorPagesTutorial.Pages.Employees.IndexModel
 @{
     ViewData["Title"] = "Index";
@@ -24,7 +23,7 @@
                  asp-append-version="true" />
 
             <div class="card-footer text-center">
-                <a href="#" class="btn btn-primary m-1">View</a>
+                <a asp-page="/Employees/Details" asp-route-id="@employee.Id" class="btn btn-primary m-1">View</a>
                 <a href="#" class="btn btn-primary m-1">Edit</a>
                 <a href="#" class="btn btn-danger m-1">Delete</a>
             </div>
