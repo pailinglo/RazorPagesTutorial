@@ -24,9 +24,9 @@ namespace RazorPagesTutorial.Pages.Employees
             this.webHostEnvironment = webHostEnvironment;
         }
 
-        //[BindProperty]
         //If using this, we don't have to pass Employee parameter into OnPost method.
         //We use this approach if we need to access the posted form values outside of the OnPost() handler method.
+        [BindProperty]
         public Employee Employee { get; set; }
 
         [BindProperty]
@@ -49,27 +49,33 @@ namespace RazorPagesTutorial.Pages.Employees
         }
 
         //the model binding will return the Employee object automatically.
-        public IActionResult OnPost(Employee employee)
+        public IActionResult OnPost()
         {
-           
-            //if user upload a file
-            if(Photo != null)
+            if (ModelState.IsValid)
             {
-                //delete the existing photo of the employee first
-                if(employee.PhotoPath != null)
-                {
-                    string filePath = Path.Combine(webHostEnvironment.WebRootPath,
-                        "images", employee.PhotoPath);
-                    System.IO.File.Delete(filePath);
-                }
-                // Save the new photo in wwwroot/images folder and update
-                // PhotoPath property of the employee object
-                employee.PhotoPath = ProcessUploadedFile();
-            }
-            
-            this.employeeRepository.UpdateEmployee(employee);           
-            return RedirectToPage("Index");
 
+                //if user upload a file
+                if(Photo != null)
+                {
+                    //delete the existing photo of the employee first
+                    if(Employee.PhotoPath != null)
+                    {
+                        string filePath = Path.Combine(webHostEnvironment.WebRootPath,
+                            "images", Employee.PhotoPath);
+                        System.IO.File.Delete(filePath);
+                    }
+                    // Save the new photo in wwwroot/images folder and update
+                    // PhotoPath property of the employee object
+                    Employee.PhotoPath = ProcessUploadedFile();
+                }
+            
+                this.employeeRepository.UpdateEmployee(Employee);           
+                return RedirectToPage("Index");
+            }
+
+            //however the page is expecting an Employee object, we can annotate Employee [BindProperty]
+            //Employee = employee;
+            return Page();
         }
 
         //we still need to pass id or the Employee information will be missing
