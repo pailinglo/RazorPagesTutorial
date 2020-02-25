@@ -14,13 +14,13 @@ namespace RazorPagesTutorial.Pages.Employees
 {
     public class EditModel : PageModel
     {
-        private readonly IEmployeeRepository employeeRepositoy;
+        private readonly IEmployeeRepository employeeRepository;
         private readonly IWebHostEnvironment webHostEnvironment;
 
-        public EditModel(IEmployeeRepository employeeRepositoy, 
+        public EditModel(IEmployeeRepository employeeRepository, 
                          IWebHostEnvironment webHostEnvironment)
         {
-            this.employeeRepositoy = employeeRepositoy;
+            this.employeeRepository = employeeRepository;
             this.webHostEnvironment = webHostEnvironment;
         }
 
@@ -30,10 +30,14 @@ namespace RazorPagesTutorial.Pages.Employees
         public Employee Employee { get; set; }
 
         [BindProperty]
+        public bool Notify { get; set; }
+        public string Message { get; set; }
+        
+        [BindProperty]
         public IFormFile Photo { get; set; }
         public IActionResult OnGet(int id)
         {
-            Employee = this.employeeRepositoy.GetEmployee(id);
+            Employee = this.employeeRepository.GetEmployee(id);
 
             if(Employee == null)
             {
@@ -63,9 +67,24 @@ namespace RazorPagesTutorial.Pages.Employees
                 employee.PhotoPath = ProcessUploadedFile();
             }
             
-            this.employeeRepositoy.UpdateEmployee(employee);           
+            this.employeeRepository.UpdateEmployee(employee);           
             return RedirectToPage("Index");
 
+        }
+
+        //we still need to pass id or the Employee information will be missing
+        public void OnPostUpdateNotificationPreferences(int id)
+        {
+            if (Notify)
+            {
+                Message = "Thank you for turning on notifications";
+            }
+            else
+            {
+                Message = "You have turned off email notifications";
+            }
+
+            Employee = this.employeeRepository.GetEmployee(id);
         }
 
         //This method helps to generate an unique file name for the uploaded file
