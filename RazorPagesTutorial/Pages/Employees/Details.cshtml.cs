@@ -20,6 +20,10 @@ namespace RazorPagesTutorial.Pages.Employees
 
         public Employee Employee { get; private set; }
 
+        //[BindProperty(SupportsGet = true)]
+        //Message will be available through the TempData passed from the previous request.
+        [TempData]
+        public string Message { get; set; }
         public IActionResult OnGet(int id)
         {
             Employee = this.employeeRepository.GetEmployee(id);

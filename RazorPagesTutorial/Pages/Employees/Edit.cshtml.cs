@@ -73,7 +73,7 @@ namespace RazorPagesTutorial.Pages.Employees
         }
 
         //we still need to pass id or the Employee information will be missing
-        public void OnPostUpdateNotificationPreferences(int id)
+        public IActionResult OnPostUpdateNotificationPreferences(int id)
         {
             if (Notify)
             {
@@ -84,7 +84,12 @@ namespace RazorPagesTutorial.Pages.Employees
                 Message = "You have turned off email notifications";
             }
 
-            Employee = this.employeeRepository.GetEmployee(id);
+            //pass data to the subsequent page.
+            TempData["message"] = Message;
+
+            //redirect to Details page with object:
+            return RedirectToPage("Details", new { id = id});
+
         }
 
         //This method helps to generate an unique file name for the uploaded file
