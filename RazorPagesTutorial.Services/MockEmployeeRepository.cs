@@ -35,5 +35,19 @@ namespace RazorPagesTutorial.Services
             //needs to include System.Linq
             return _employeeList.FirstOrDefault(e => e.Id == id);
         }
+
+        public Employee UpdateEmployee(Employee updatedEmployee)
+        {
+            Employee employee = _employeeList.FirstOrDefault(e => e.Id == updatedEmployee.Id);
+
+            if(employee != null)
+            {
+                employee.Email = updatedEmployee.Email;
+                employee.Name = updatedEmployee.Name;
+                employee.Department = updatedEmployee.Department;
+            }
+
+            return employee;
+        }
     }
 }
