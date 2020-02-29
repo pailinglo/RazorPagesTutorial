@@ -35,9 +35,18 @@ namespace RazorPagesTutorial.Pages.Employees
         
         [BindProperty]
         public IFormFile Photo { get; set; }
-        public IActionResult OnGet(int id)
+
+        //we are reusing Edit page to add a new employee, so we have to make id as nullable.
+        public IActionResult OnGet(int? id)
         {
-            Employee = this.employeeRepository.GetEmployee(id);
+            if (id.HasValue)
+            {
+                Employee = this.employeeRepository.GetEmployee(id.Value);
+            }
+            else
+            {
+                Employee = new Employee();
+            }
 
             if(Employee == null)
             {
@@ -68,8 +77,16 @@ namespace RazorPagesTutorial.Pages.Employees
                     // PhotoPath property of the employee object
                     Employee.PhotoPath = ProcessUploadedFile();
                 }
-            
-                this.employeeRepository.UpdateEmployee(Employee);           
+                
+                if(Employee.Id > 0)
+                {
+                    this.employeeRepository.UpdateEmployee(Employee);
+                }
+                else
+                {
+                    this.employeeRepository.AddEmployee(Employee);
+                }
+
                 return RedirectToPage("Index");
             }
 

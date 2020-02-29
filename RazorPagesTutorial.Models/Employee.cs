@@ -17,6 +17,10 @@ namespace RazorPagesTutorial.Models
         [Required]
         public string Email { get; set; }
         public string PhotoPath { get; set; }
+
+        // Dept => nullable, or the "require validation" won't work. e.g.         
+        // the validation error won't show even if I didn't choose a department
+        [Required]
         public Dept? Department { get; set; }
     }
 }

@@ -5,9 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="wwwroot\images\john.PNG" />
-    <Content Remove="wwwroot\images\noimage.jpg" />
-    <Content Remove="wwwroot\images\sara.PNG" />
+    <Compile Remove="wwwroot\images\**" />
+    <Content Remove="wwwroot\images\**" />
+    <EmbeddedResource Remove="wwwroot\images\**" />
+    <None Remove="wwwroot\images\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -24,10 +25,6 @@
   <ItemGroup>
     <ProjectReference Include="..\RazorPagesTutorial.Models\RazorPagesTutorial.Models.csproj" />
     <ProjectReference Include="..\RazorPagesTutorial.Services\RazorPagesTutorial.Services.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="wwwroot\images\" />
   </ItemGroup>
 
 </Project>
