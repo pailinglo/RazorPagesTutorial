@@ -13,6 +13,9 @@ namespace RazorPagesTutorial.Pages.Employees
     {
         private readonly IEmployeeRepository employeeRepository;
 
+        //by default, BindProperty only supports post.
+        [BindProperty(SupportsGet = true)]
+        public string SearchTerm { get; set; }
         public IEnumerable<Employee> Employees { get; set; }
         public IndexModel(IEmployeeRepository employeeRepository)
         {
@@ -20,7 +23,7 @@ namespace RazorPagesTutorial.Pages.Employees
         }
         public void OnGet()
         {
-            Employees = employeeRepository.GetAllEmployees();
+            Employees = employeeRepository.Search(SearchTerm);
         }
     }
 }

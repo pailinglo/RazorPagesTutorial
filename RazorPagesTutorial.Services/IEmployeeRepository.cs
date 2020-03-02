@@ -7,6 +7,7 @@ namespace RazorPagesTutorial.Services
     //This interface abstraction allows us to use dependency injection.
     public interface IEmployeeRepository
     {
+        IEnumerable<Employee> Search(string searchTerm);
         IEnumerable<Employee> GetAllEmployees();
         Employee GetEmployee(int id);
 
