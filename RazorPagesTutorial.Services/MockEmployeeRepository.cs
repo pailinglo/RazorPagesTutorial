@@ -69,5 +69,14 @@ namespace RazorPagesTutorial.Services
 
             return employee;
         }
+        public IEnumerable<DeptHeadCount> EmployeeCountByDept()
+        {
+            return _employeeList.GroupBy(e => e.Department)
+                            .Select(g => new DeptHeadCount()
+                            {
+                                Department = g.Key.Value,
+                                Count = g.Count()
+                            }).ToList();
+        }
     }
 }
