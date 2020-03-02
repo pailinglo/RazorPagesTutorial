@@ -31,7 +31,11 @@ namespace RazorPagesTutorial
                 options => options.UseSqlServer(Configuration.GetConnectionString("EmployeeDBConnection")));
 
             services.AddRazorPages();
-            services.AddSingleton<IEmployeeRepository, MockEmployeeRepository>();
+            //use SQLEmployeeRepository instead of MockEmployeeRepository for data access.
+            //We are using AddScoped() method because we want the instance to be alive and available 
+            //for the entire scope of the given HTTP request.For another new HTTP request, 
+            //a new instance of SQLEmployeeRepository class will be provided and it will be available throughout the entire scope of that HTTP request.
+           services.AddScoped<IEmployeeRepository, SQLEmployeeRepository>();
 
             services.Configure<RouteOptions>(options =>
             {
