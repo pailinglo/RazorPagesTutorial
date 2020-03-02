@@ -11,6 +11,9 @@
     </style>
 
 <h1>Employees</h1>
+
+    @await Component.InvokeAsync("HeadCount")
+
 <div class="card-deck">
     @foreach (var employee in Model.Employees)
     {

@@ -14,6 +14,6 @@ namespace RazorPagesTutorial.Services
         Employee AddEmployee(Employee newEmployee);
 
         Employee DeleteEmployee(int id);
-        IEnumerable<DeptHeadCount> EmployeeCountByDept();
+        IEnumerable<DeptHeadCount> EmployeeCountByDept(Dept? dept);
     }
 }
