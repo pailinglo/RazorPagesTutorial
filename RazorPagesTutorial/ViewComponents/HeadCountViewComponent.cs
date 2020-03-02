@@ -18,9 +18,9 @@ namespace RazorPagesTutorial.ViewComponents
         }
 
         //Specify a default value of null. This makes this parameter optional.
-        public IViewComponentResult Invoke(Dept? department = null)
+        public IViewComponentResult Invoke(Dept? departmentName = null)
         {
-            var result = employeeRepository.EmployeeCountByDept(department);
+            var result = employeeRepository.EmployeeCountByDept(departmentName);
             return View(result);
         }
 
