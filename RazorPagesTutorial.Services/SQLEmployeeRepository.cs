@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.EntityFrameworkCore;
 using RazorPagesTutorial.Models;
 
 namespace RazorPagesTutorial.Services
@@ -57,7 +58,15 @@ namespace RazorPagesTutorial.Services
         public Employee GetEmployee(int id)
         {
             //return context.Employees.FirstOrDefault(e => e.Id == id);
-            return context.Employees.Find(id);
+            //return context.Employees.Find(id);
+
+            //use FromSqlRaw instead of Linq is the query is too complicated
+            //here we use as a demo on how to call store procedure.
+            return context.Employees
+                .FromSqlRaw<Employee>("spGetEmployeeById {0}", id)  //pass value as parameter to avoid injection attack. avoid using concatenated string for SQL
+                .ToList()           //since FromSqlRaw returns IQueryable
+                .FirstOrDefault();  //since we are expecting only one result.
+
         }
 
         public IEnumerable<Employee> Search(string searchTerm)
